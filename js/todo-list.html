@@ -1,0 +1,7 @@
+<input id="toggle-all" class="toggle-all" type="checkbox">
+<label for="toggle-all">Mark all as complete</label>
+<ul class="todo-list">
+	<template for="item" each="${ host.savedItems }">
+		<li is="todo-li" class="${ item.completed ? 'completed' : '' }" .text="${ item.text }" completed?="${ item.completed }"></li>
+	</template>
+</ul>

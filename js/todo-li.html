@@ -1,0 +1,6 @@
+<div class="view">
+	<input type="checkbox" class="toggle" checked?="${ host.completed }" onclick="host.toggleComplete(this.checked)">
+	<label>${ host.text }</label>
+	<button type="button" class="destroy" onclick="host.destroy()"></button>
+</div>
+<input class="edit" value="${ host.text }">
