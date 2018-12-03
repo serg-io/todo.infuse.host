@@ -1,7 +1,21 @@
-<input id="toggle-all" class="toggle-all" type="checkbox">
+<!--
+	This checkbox is used to toggle the complete status of the todo items.
+	When clicked: calls the host's `toggleAll` method.
+	It should be automatically checked if all items are completed.
+	The `checked` **property** is re-infused every time a "counts-updated" event occurs on the host.
+-->
+<input id="toggle-all" class="toggle-all" type="checkbox" onclick="host.toggleAll(this.checked)" .checked="${ event && event.detail.allCompleted }" watch-host="counts-updated">
 <label for="toggle-all">Mark all as complete</label>
-<ul class="todo-list">
+
+<!--
+	Calls `host.save` whenever a "todo-changed" event reaches this element.
+	Calls `host.removeItem` whenever the "destroy-todo" event reaches this element.
+-->
+<ul class="todo-list" on-todo-changed="host.save(); host.dispatchCountsUpdated();" on-destroy-todo="host.removeItem(event.target)">
+	<!--
+		Iterate over all `savedItems` and for each iteration add a <li is="todo-li"> element.
+	-->
 	<template for="item" each="${ host.savedItems }">
-		<li is="todo-li" class="${ item.completed ? 'completed' : '' }" .text="${ item.text }" completed?="${ item.completed }"></li>
+		<li is="todo-li" .text="${ item.text }" completed?="${ item.completed }"></li>
 	</template>
 </ul>

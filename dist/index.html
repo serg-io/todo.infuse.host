@@ -12,20 +12,20 @@
 			todo-app, todo-header, todo-list {
 				display: block;
 			}
+
+			.todo-list li[completed] label {
+				color: #d9d9d9;
+				text-decoration: line-through;
+			}
 		</style>
 	</head>
 	<body>
 		<todo-app class="todoapp"></todo-app>
-		<!--
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
-			< ! - - Remove the below line ↓ - - >
-			<p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-			< ! - - Change this out with your name and url ↓ - - >
-			<p>Created by <a href="http://todomvc.com">you</a></p>
-			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+			<p>Created by <a href="https://github.com/serg-io">Sergio Alcantara</a></p>
+			<p>using <a href="https://github.com/serg-io/infuse.host">infuse.host</a></p>
 		</footer>
-		-->
 		<script src="bundle.js"></script>
 	</body>
 </html>

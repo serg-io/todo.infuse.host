@@ -6,7 +6,7 @@ module.exports = {
 	devServer: {
 		contentBase: [dist],
 	},
-	entry: './js/index.js',
+	entry: './js/TodoApp.js',
 	mode: 'development',
 	module: {
 		rules: [{

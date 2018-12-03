@@ -1,6 +1,26 @@
-<div class="view">
-	<input type="checkbox" class="toggle" checked?="${ host.completed }" onclick="host.toggleComplete(this.checked)">
-	<label>${ host.text }</label>
-	<button type="button" class="destroy" onclick="host.destroy()"></button>
-</div>
-<input class="edit" value="${ host.text }">
+<form onsubmit="host.submit(event)">
+	<div class="view">
+		<!--
+			This checkbox toggles the todo item between completed and not completed (active).
+			The `checked` property is infused every time a "todo-completed" event occurs on the host.
+		-->
+		<input type="checkbox" class="toggle" .checked="${ host.completed }" onclick="host.setCompleted(this.checked, true, false)" watch-host="todo-completed">
+
+		<!--
+			This label contains the text of the todo item. Double clicking it enables the edit mode.
+		-->
+		<label ondblclick="host.editing = true" watch-host="todo-changed">${ host.text }</label>
+
+		<!--
+			Clicking this button dispatches a "destroy-todo" event which is used by the <todo-list>
+			to actually remove the item and save the remaining items.
+		-->
+		<button type="button" class="destroy" onclick="host.destroy()"></button>
+	</div>
+
+	<!--
+		This input field is shown when the edit mode is enabled (when the <label> is double clicked).
+		Changes made to this field are undone if it loses focus or if the "Escape" key is pressed.
+	-->
+	<input type="text" class="edit" .value="${ host.text }" onblur="host.undo()" onkeydown="if (event.key === 'Escape') { host.undo(); }" watch-host="todo-changed">
+</form>

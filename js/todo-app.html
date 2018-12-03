@@ -1,23 +1,33 @@
 <template>
+	<!--
+		Whenever the "todo-created" event occurs on the <todo-header> the new todo item is added to
+		the list by calling the `addTodo` method of the <todo-list> (the next sibling).
+	-->
 	<todo-header class="header" on-todo-created="this.nextElementSibling.addTodo(event.detail)"></todo-header>
+
+	<!-- Contains the list of todo items. -->
 	<todo-list class="main"></todo-list>
-	<!-- This footer should hidden by default and shown when there are todos - - >
-	<footer class="footer">
-		< ! - - This should be `0 items left` by default - - >
-		<span class="todo-count"><strong>0</strong> item left</span>
-		< ! - - Remove this if you don't implement routing - - >
-		<ul class="filters">
-			<li>
-				<a class="selected" href="#/">All</a>
-			</li>
-			<li>
-				<a href="#/active">Active</a>
-			</li>
-			<li>
-				<a href="#/completed">Completed</a>
-			</li>
-		</ul>
-		< ! - - Hidden if no completed items are left ↓ - - >
-		<button class="clear-completed">Clear completed</button>
-	</footer> -->
+
+	<!--
+		The footer must be hidden if the total number of todo items is 0. The hidden attribute is
+		re-infused every time a "counts-updated" event reaches the `host` (the <todo-app>).
+	-->
+	<footer class="footer" hidden?="${ !event || event.detail.total === 0 }" watch-host="counts-updated">
+		<span class="todo-count">
+			<!--
+				The number of active items is updated every time a "counts-updated" event reaches
+				the `host`.
+			-->
+			<strong watch-host="counts-updated">${ event ? event.detail.active : 0 }</strong> item left
+		</span>
+
+		<!--
+			When clicked: calls `clearCompleted` on the <todo-list>.
+			Must be hidden if there are no completed items. The hidden attribute is re-infused
+			every time a "counts-updated" event reached the `host`.
+		-->
+		<button type="button" class="clear-completed" onclick="host.query('todo-list').clearCompleted()" hidden?="${ !event || event.detail.completed === 0 }" watch-host="counts-updated">
+			Clear completed
+		</button>
+	</footer>
 </template>
