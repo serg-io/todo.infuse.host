@@ -10,7 +10,7 @@ module.exports = {
 	module: {
 		rules: [{
 			test: /\.html$/,
-			use: ['infuse-loader'],
+			use: ['infuse-loader', 'extract-loader', 'html-loader'],
 		}],
 	},
 	output: {
