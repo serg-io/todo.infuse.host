@@ -1,12 +1,11 @@
 const path = require('path');
-const dist = path.resolve(__dirname, 'dist');
 
 module.exports = {
 	context: __dirname,
 	devServer: {
-		contentBase: [dist],
+		contentBase: [path.resolve(__dirname, 'src')],
 	},
-	entry: './js/TodoApp.js',
+	entry: './src/TodoApp.js',
 	mode: 'development',
 	module: {
 		rules: [{
@@ -15,7 +14,7 @@ module.exports = {
 		}],
 	},
 	output: {
-		path: dist,
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
 	},
 };
