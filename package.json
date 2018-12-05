@@ -26,8 +26,7 @@
   },
   "dependencies": {
     "infuse.host": "^0.1.0",
-    "todomvc-app-css": "^2.1.2",
-    "todomvc-common": "^1.0.5"
+    "todomvc-app-css": "^2.1.2"
   },
   "devDependencies": {
     "infuse-loader": "^0.1.0",
