@@ -109,15 +109,15 @@ export default class TodoList extends Host {
 	dispatchCountsUpdated() {
 		// Find all items in the list.
 		const items = this.queryAll('li');
-		const total = items.length;
+		const len = items.length;
 		// Count the number of completed items.
 		const completed = items.reduce((total, item) => total + (item.completed ? 1 : 0), 0);
 		// The event's detail object.
 		const counts = {
-			total,
+			total: len,
 			completed,
-			active: total - completed,
-			allCompleted: total !== 0 && total === completed,
+			active: len - completed,
+			allCompleted: len !== 0 && len === completed,
 		};
 
 		this.dispatch('counts-updated', counts);

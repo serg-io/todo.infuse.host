@@ -1,7 +1,6 @@
 module.exports = {
 	env: {
 		browser: true,
-		jest: true,
 	},
 	/**
 	 * Extend the Airbnb style guide.
@@ -10,6 +9,10 @@ module.exports = {
 	 */
 	extends: 'airbnb-base',
 	rules: {
+		/**
+		 * Turn off requirement to use `this` in class methods.
+		 */
+		'class-methods-use-this': 'off',
 		/**
 		 * Turn off requirement for new line at the end of the files.
 		 */
